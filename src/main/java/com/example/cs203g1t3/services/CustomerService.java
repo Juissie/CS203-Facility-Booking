@@ -27,8 +27,8 @@ public class CustomerService {
         }
     }
 
-    public Customer authenticate(String username, String password) {
-        Optional<Customer> customer = customerRepository.findByUsernameAndPassword(username, password);
+    public Customer authenticate(String name, String password) {
+        Optional<Customer> customer = customerRepository.findByNameAndPassword(name, password);
         if  (customer.isPresent()) {
             return customer.get();
         }
