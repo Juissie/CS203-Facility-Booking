@@ -3,12 +3,14 @@ package com.example.cs203g1t3.models;
 import java.time.LocalDateTime;
 import java.util.*;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
 @Entity
+@Table
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
