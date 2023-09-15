@@ -29,13 +29,13 @@ public class AuthenticationService {
 
 
     public AuthenticationResponse register(RegisterRequest request) {
-//        var user = User.builder()
-//                .username(request.getUsername())
-//                .password(passwordEncoder.encode(request.getPassword()))
-//                .roles("USER")
-//                .build();
-        User user;
-        user = new User(request.getUsername(),passwordEncoder.encode(request.getPassword()), Role.USER);
+        var user = User.builder()
+                .username(request.getUsername())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .roles(Role.USER)
+                .build();
+//        User user;
+//        user = new User(request.getUsername(),passwordEncoder.encode(request.getPassword()), Role.USER);
         userRepository.save(user);
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
@@ -51,7 +51,7 @@ public class AuthenticationService {
                 )
         );
         var user = userRepository.findByUsername(request.getUsername())
-                .orElseThrow(); //todo: add to exception to be thrown here
+                .orElseThrow(() -> new UsernameNotFoundException("Username not found!")); //todo: add to exception to be thrown here
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
