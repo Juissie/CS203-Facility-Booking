@@ -32,7 +32,7 @@ public class AuthenticationService {
         var user = User.builder()
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .roles(Role.USER)
+                .roles(Role.USER.toString())
                 .build();
 //        User user;
 //        user = new User(request.getUsername(),passwordEncoder.encode(request.getPassword()), Role.USER);
