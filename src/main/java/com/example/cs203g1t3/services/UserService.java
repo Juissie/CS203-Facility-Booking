@@ -1,62 +1,51 @@
 package com.example.cs203g1t3.services;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.example.cs203g1t3.models.User;
 import com.example.cs203g1t3.repository.UserRepository;
 
 @Service
-public class UserService {
-
-
-    private UserRepository userRepository;
+public class UserService implements UserDetailsService {
     
+    private final UserRepository userRepository;
+    @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    public List<User> getUsers() {
-        return userRepository.findAll();
+    // Added dependency for UsernameNotFoundException
+    @Override
+        public UserDetails loadUserByUsername(String username)  throws UsernameNotFoundException {
+        return userRepository.findByUsername(username)
+            .orElseThrow(() -> new UsernameNotFoundException("User '" + username + "' not found"));
     }
+    
+    //Important: Please only include methods such as makeBooking or cancelBooking AND NOT LOG IN OR REGISTER METHOD
+    // as they are placed in the authenticationservice
 
-    // Old implementation 
-        // public User registerCustomer(String username, String password, String email) {
-        //     if (username == null  || password == null) {
-        //         return null;
-        //     } else {
-        //         User customer = new User();
-        //         customer.setUsername(username);
-        //         customer.setPassword(password);
-        //         customer.setEmail(email);
-        //         return userRepository.save(customer);
-        //     }
-        // }
+    //Should not include any registering or log in service function here
+//    public User registerCustomer(String username, String password, String email) {
+//        if (username == null  || password == null) {
+//            return null;
+//        } else {
+//            User user = new User();
+//            user.setUsername(username);
+//            user.setPassword(password);
+//            user.setEmail(email);
+//            return userRepository.save(user);
+//        }
+//    }
 
-    public void registerUser(User user) {
-        Optional<User> usernameOptional = userRepository.findByUsername(user.getUsername());
-        Optional<User> emailOptional = userRepository.findByEmail(user.getEmail());
-        if (usernameOptional.isPresent()) {
-            throw new IllegalStateException("Username taken");
-        } else if (emailOptional.isPresent()) {
-            throw new IllegalStateException("Email taken");
-        }
-        userRepository.save(user); 
-    }
-
-    public void deleteUser(Long userId) {
-        boolean exists = userRepository.existsById(userId);
-        if (!exists) {
-            throw new IllegalStateException("User with ID " + userId + "does not exists");
-        }
-        userRepository.deleteById(userId);
-    }
-
-//    public User authenticate(String name, String password) {
-//        Optional<User> user = userRepository.findByUsernameAndPassword(name, password);
+    //Should not include any registering or log in service function here
+//    public User authenticate(String username, String password) {
+//        Optional<User> user = userRepository.findByUsernameAndPassword(username, password);
 //        return user.orElse(null);
 //    }
+
+
+
 }
