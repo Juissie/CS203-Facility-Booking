@@ -1,7 +1,7 @@
 package com.example.cs203g1t3.models;
 import java.util.*;
 
-import com.example.cs203g1t3.enums.Role;
+
 import jakarta.persistence.*;
 import lombok.*;
 import org.antlr.v4.runtime.misc.NotNull;
@@ -22,7 +22,7 @@ public class User implements UserDetails {
     @GeneratedValue //(strategy = GenerationType.IDENTITY)
     private Integer userId;
 
-    @Enumerated(EnumType.STRING)
+//    @Enumerated(EnumType.STRING)
     private String authorities;
 
     @Setter
@@ -56,10 +56,10 @@ public class User implements UserDetails {
     @Setter
     private boolean isMember;
 
-    public User(@NonNull String username, @NonNull String password,String[] roles){
+    public User(@NonNull String username, @NonNull String password,String authorities){
         this.username = username;
         this.password = password;
-        ;
+        this.authorities = authorities;
     }
 
     // implement method
@@ -72,7 +72,6 @@ public class User implements UserDetails {
         return null;
     }
 
-    @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(authorities));
     }
