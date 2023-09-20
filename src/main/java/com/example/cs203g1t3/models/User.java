@@ -1,5 +1,6 @@
 package com.example.cs203g1t3.models;
 
+import com.example.cs203g1t3.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.antlr.v4.runtime.misc.NotNull;
@@ -7,6 +8,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collection;
@@ -29,15 +32,16 @@ public class User implements UserDetails {
 
 //    Login Details
     private String username;
-    @NonNull
+    @NotBlank
 //    @Size(min = 8, message = "Password should be at least 8 characters")
     private String password;
-    @NotNull
+    @NotBlank
     // We define two roles/authorities: ROLE_USER or ROLE_ADMIN
     private String authorities;
 
 //    //Other non-important identifiers
      private String address;
+     @Email
      private String email;
      private Integer phoneNumber;
      private boolean accountStatus;
@@ -50,7 +54,7 @@ public class User implements UserDetails {
 
 
 
-    public User(String username, String email, String password,String authorities) {
+    public User(String username, String email, String password, Role role) {
         this.username = username;
         this.email = email;
         this.password = password;
