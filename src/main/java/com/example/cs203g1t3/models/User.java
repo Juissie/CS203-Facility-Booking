@@ -36,8 +36,9 @@ public class User implements UserDetails {
 //    @Size(min = 8, message = "Password should be at least 8 characters")
     private String password;
     @NotBlank
-    // We define two roles/authorities: ROLE_USER or ROLE_ADMIN
-    private String authorities;
+    @Enumerated(EnumType.STRING)
+    // We define two roles/authorities: ROLE_USER OR ROLE_BOOKINGMANAGER
+    private String role;
 
 //    //Other non-important identifiers
      private String address;
@@ -58,12 +59,12 @@ public class User implements UserDetails {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.authorities = authorities;
+        this.role = role;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority(authorities));
+        return role.getAuthorities();
     }
 
     @Override
