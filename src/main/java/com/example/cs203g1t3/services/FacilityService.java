@@ -4,9 +4,9 @@ import com.example.cs203g1t3.models.Facility;
 import com.example.cs203g1t3.repository.FacilityRepository;
 import java.util.*;
 
+import org.springframework.stereotype.Service;
 
-import java.time.*;
-
+@Service
 public class FacilityService {
     private FacilityRepository facilities;
 

@@ -96,12 +96,22 @@ Content-Type: application/json
     "password": "Pass1234!"
 }
 
-
-POST http://localhost:8080/books/2/reviews
+### Register admin
+POST http://localhost:8080/api/auth/register
 Content-Type: application/json
-# User role
-Authorization: Basic gooduser:goodpassword
 
 {
-    "review": "Terrible book :)"
+    "username": "A9835241A",
+    "email": "aqqzzq@gmail.com",
+    "password": "Pass1234!",
+    "role": ["admin"]
+}
+
+### Login admin
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "A9835241A",
+    "password": "Pass1234!"
 }
