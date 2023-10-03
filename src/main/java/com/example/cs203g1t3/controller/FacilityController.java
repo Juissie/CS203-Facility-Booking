@@ -46,4 +46,6 @@ public class FacilityController {
         }
         return ResponseEntity.ok(facility);
     }
+
+    // Include PUT and DELETE methods to update and delete facilities respectively.
 }
