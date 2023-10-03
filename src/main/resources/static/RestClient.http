@@ -30,7 +30,7 @@ POST http://localhost:8080/api/auth/register
 Content-Type: application/json
 
 {
-    "username": "T1234467Q",
+    "username": "S7217079D",
     "email": "hehe@gmail.com",
     "password": "Pass1234!"
 }
@@ -96,6 +96,8 @@ Content-Type: application/json
     "password": "Pass1234!"
 }
 
+## Adding of facility testing + Viewing of facility as user ##
+
 ### Register admin
 POST http://localhost:8080/api/auth/register
 Content-Type: application/json
@@ -124,4 +126,33 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTODIxNzA3OUQiLCJpYXQiOjE2O
 {
     "facilityType": "FacilityOne",
     "description": "Default Description"
+}
+
+### Add new user
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "S7217079D",
+    "email": "hehe@gmail.com",
+    "password": "Pass1234!"
+}
+
+
+### Login new user
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "S7217079D",
+    "password": "Pass1234!"
+}
+
+### Get facility
+GET http://localhost:8080/api/facilities/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTNzIxNzA3OUQiLCJpYXQiOjE2OTYzMjA2MzAsImV4cCI6MTY5NjQwNzAzMH0.qX_L2kPYe7p2p9BCPN-ql7gx-Vb3Hn_VaVH07pop_T0
+
+{
+
 }
