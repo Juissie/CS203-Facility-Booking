@@ -121,7 +121,7 @@ Content-Type: application/json
 ### Add facility
 POST http://localhost:8080/api/facilities
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTODIxNzA3OUQiLCJpYXQiOjE2OTYzMTk3NTQsImV4cCI6MTY5NjQwNjE1NH0.XyDtGgn27qKwWqRZZDKIIxYO4qC-dzytvIK5EKEDF28
+Authorization: Bearer
 
 {
     "facilityType": "FacilityOne",
